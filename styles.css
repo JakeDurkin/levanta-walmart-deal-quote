@@ -463,7 +463,7 @@ h1, h2, h3 {
 .input-row input::placeholder {
   color: var(--evergreen);
   font-weight: 500;
-  opacity: 0.45;
+  opacity: 0.72;
 }
 .input-row input.narrow { max-width: 88px; flex: 0 1 88px; }
 

@@ -136,7 +136,6 @@
         rows += '<div class="row"><span>Third marketplace</span><span class="val"><s class="strike">' + P.money(calc.waivedAddOn) + "</s> waived</span></div>";
       }
       rows += '<div class="row"><span>SaaS</span><span class="val">' +
-        (calc.dealOn ? offerLabel("forest") + " " : "") +
         strikeMoney(calc.list, calc.base) + "/mo + " + calc.pct + "%</span></div>";
       if (state.marketplaces.length) {
         rows += '<div class="mp-pills">' + state.marketplaces.map(function (m) {
@@ -202,10 +201,12 @@
     var goldPrice = goldCalc.anyMarketplace ? goldCalc.base : 750;
     var goldList = goldCalc.anyMarketplace ? goldCalc.listBase : 750;
     var goldPct = goldCalc.anyMarketplace ? goldCalc.pct : 3.5;
-    var goldNote = "List price · no multi-channel fee";
+    var nMk = state.marketplaces.length;
+    var goldNote = "List price";
     if (goldCalc.litePlan && goldCalc.planLabel === "Shopify-only") goldNote = "Shopify-only plan";
     else if (goldCalc.litePlan && goldCalc.planLabel === "Walmart-only") goldNote = "Walmart-only plan";
-    else if (!goldCalc.anyMarketplace) goldNote = "List price · no multi-channel fee";
+    else if (nMk >= 2) goldNote = "List · " + nMk + " marketplaces";
+    else if (!goldCalc.anyMarketplace) goldNote = "List price";
     var goldRec = rec === 1 ? '<span class="rec">Recommended</span>' : "";
     var goldPriceHtml = strikeMoney(goldList, goldPrice);
     var goldOffer = goldCalc.dealOn ? offerLabel("ivory") : "";
